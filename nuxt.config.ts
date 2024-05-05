@@ -8,6 +8,7 @@ dotenv.config();
 
 const config: NuxtConfig = {
   ssr: false,
+  srcDir: 'src',
   target: 'static',
   head: {
     title: 'todo',
@@ -27,7 +28,6 @@ const config: NuxtConfig = {
   typescript: {
     tsconfig: './tsconfig.json'
   },
-  srcDir: 'src',
   css: ["~/assets/css/main.css"],
   plugins: [],
   components: true,

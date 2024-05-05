@@ -2,6 +2,7 @@
   <main>
     <h1>Task Board</h1>
     <p>Create a list of tasks</p>
+    <p>{{ message }}</p>
 
     <div class="create-new">
       <input 
@@ -24,14 +25,17 @@
 
 <script lang="ts">
 import { invoke } from '@tauri-apps/api';
-
 import Vue from 'vue';
 
 export default Vue.extend({
   data (){
     return {
+      message: '',
       newTask: ''
     }
+  },
+  async mounted () {
+    this.message = await invoke('greet')
   },
   methods: {
     addTask () {
