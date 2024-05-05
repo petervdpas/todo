@@ -1,4 +1,5 @@
 import { NuxtConfig } from '@nuxt/types';
+import webpack from 'webpack';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
@@ -33,13 +34,14 @@ const config: NuxtConfig = {
   buildModules: ['@nuxt/typescript-build'],
   modules: ['@nuxtjs/dotenv'],
   build: {
-    extend(config: any, ctx: { isDev: boolean; isClient: boolean }) {
+    extend(config: webpack.Configuration, ctx: { isDev: boolean; isClient: boolean }) {
+      const plugins: webpack.Plugin[] = config.plugins as webpack.Plugin[];
       if (ctx.isDev && ctx.isClient) {
-        config.plugins = config.plugins.filter(
-          (plugin: any) => !(plugin instanceof ForkTsCheckerWebpackPlugin)
+        const filteredPlugins = plugins.filter(
+          (plugin): boolean => !(plugin instanceof ForkTsCheckerWebpackPlugin)
         );
-  
-        config.plugins.push(
+        config.plugins = [
+          ...filteredPlugins,
           new ForkTsCheckerWebpackPlugin({
             typescript: {
               configFile: path.resolve(__dirname, 'tsconfig.json'),
@@ -49,7 +51,7 @@ const config: NuxtConfig = {
               },
             }
           })
-        );
+        ];
       }
     }
   }
