@@ -35,7 +35,9 @@ const config: NuxtConfig = {
   modules: ['@nuxtjs/dotenv'],
   build: {
     extend(config: webpack.Configuration, ctx: { isDev: boolean; isClient: boolean }) {
+
       const plugins: webpack.Plugin[] = config.plugins as webpack.Plugin[];
+
       if (ctx.isDev && ctx.isClient) {
         const filteredPlugins = plugins.filter(
           (plugin): boolean => !(plugin instanceof ForkTsCheckerWebpackPlugin)
