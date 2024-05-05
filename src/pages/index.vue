@@ -22,7 +22,6 @@
   </main>
 </template>
 
-<!-- This is new -->
 <script lang="ts">
 import { invoke } from '@tauri-apps/api';
 
@@ -43,10 +42,5 @@ export default Vue.extend({
     }
   }
 });
-
-</script>
-<!-- This is new -->
-
-<script>
 
 </script>
