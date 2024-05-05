@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "tauri": "tauri"
+    "tauri-dev": "tauri dev"
   },
   "dependencies": {
     "@nuxt/typescript-build": "^3.0.2",
