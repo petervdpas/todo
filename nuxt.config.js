@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const path = require('path');
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -22,6 +26,10 @@ export default {
     ]
   },
 
+  typescript: {
+    tsconfig: './tsconfig.json'
+  },
+
   srcDir: 'src',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -38,13 +46,35 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxt/typescript-build'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/dotenv'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+        config.plugins = config.plugins.filter(
+          plugin => !(plugin instanceof ForkTsCheckerWebpackPlugin)
+        );
+  
+        config.plugins.push(
+          new ForkTsCheckerWebpackPlugin({
+            typescript: {
+              configFile: path.resolve(__dirname, 'tsconfig.json'),
+              diagnosticOptions: {
+                semantic: true,
+                syntactic: true,
+              },
+            }
+          })
+        );
+      }
+    }
   }
 }

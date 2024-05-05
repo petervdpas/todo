@@ -22,8 +22,13 @@
   </main>
 </template>
 
-<script>
-export default {
+<!-- This is new -->
+<script lang="ts">
+import { invoke } from '@tauri-apps/api';
+
+import Vue from 'vue';
+
+export default Vue.extend({
   data (){
     return {
       newTask: ''
@@ -37,5 +42,11 @@ export default {
       }
     }
   }
-}
+});
+
+</script>
+<!-- This is new -->
+
+<script>
+
 </script>
