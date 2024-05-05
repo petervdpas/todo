@@ -1,69 +1,86 @@
+
 # todo
+
+This project uses Nuxt.js for the frontend and Tauri as a lightweight alternative to Electron for creating a desktop application. Tauri integrates seamlessly with the frontend, allowing for the development of secure and efficient desktop applications using web technologies.
 
 ## Build Setup
 
+First, ensure you have Rust and the Tauri CLI installed, as Tauri is built on top of Rust.
+
 ```bash
-# install dependencies
+# Install Rust
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install Tauri CLI
+$ cargo install tauri-cli
+```
+
+### For Nuxt.js
+
+```bash
+# Install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# Serve with hot reload at localhost:3000
 $ yarn dev
 
-# build for production and launch server
+# Build for production and launch server
 $ yarn build
 $ yarn start
 
-# generate static project
+# Generate static project
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+### For Tauri
+
+Tauri uses the `src-tauri` directory for its configuration and Rust source code.
+
+```bash
+# Development: Run Tauri in development mode
+$ yarn tauri dev
+
+# Build: Create a production build of your Tauri application
+$ yarn tauri build
+```
+
+For detailed explanation on how Nuxt.js works, check out the [Nuxt.js documentation](https://nuxtjs.org).
+
+For more about Tauri, including setup and configuration, visit the [Tauri Studio documentation](https://tauri.studio/docs/getting-started/intro).
 
 ## Special Directories
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+You can create the following directories, some of which have special behaviors. Only `pages` is required for Nuxt; you can delete others if you don't want to use their functionality.
 
 ### `assets`
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+Contains uncompiled assets such as Stylus or Sass files, images, or fonts. [More info](https://nuxtjs.org/docs/2.x/directory-structure/assets).
 
 ### `components`
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+Contains your Vue.js components which can be reused and imported into your pages, layouts, and even other components. [More info](https://nuxtjs.org/docs/2.x/directory-structure/components).
 
 ### `layouts`
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
+Helps change the look and feel of your Nuxt app, such as including a sidebar or different layouts for mobile and desktop. [More info](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
 
 ### `pages`
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+Contains your application views and routes. Nuxt reads all the `*.vue` files inside this directory and sets up Vue Router automatically. [More info](https://nuxtjs.org/docs/2.x/get-started/routing).
 
 ### `plugins`
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+Contains JavaScript plugins that run before instantiating the root Vue.js Application. This is where you add Vue plugins and inject functions or constants. [More info](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
 
 ### `static`
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+Contains static files. Each file inside this directory is mapped to `/`. [More info](https://nuxtjs.org/docs/2.x/directory-structure/static).
 
 ### `store`
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+Contains Vuex store files. Creating a file in this directory automatically activates Vuex. [More info](https://nuxtjs.org/docs/2.x/directory-structure/store).
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+### `src-tauri`
+
+Specific to Tauri, this directory contains your backend Rust code and configurations for your desktop application. This is where you configure the Tauri-specific settings, such as window creation, security policies, and system interactions.
+
